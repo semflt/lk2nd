@@ -17,13 +17,13 @@ static void cmd_oem_screenshot(const char *arg, void *data, unsigned sz)
 	void *end;
 
 	if (!fb) {
-		fastboot_fail("display not initialized");
+		fastboot_fail("dispway nyot inyitiawized");
 		return;
 	}
 
 	sz = fb->width * fb->height;
 	if (sz % sizeof(uint64_t) != 0) {
-		fastboot_fail("unsupported display resolution");
+		fastboot_fail("unsuppowted dispway wesowution");
 		return;
 	}
 
@@ -43,7 +43,7 @@ static void cmd_oem_screenshot(const char *arg, void *data, unsigned sz)
 		end = rgb8888_swap_to_rgb888(data + hdr, fb->base, sz);
 		break;
 	default:
-		fastboot_fail("unsupported display bpp");
+		fastboot_fail("unsuppowted dispway bpp");
 		return;
 	}
 

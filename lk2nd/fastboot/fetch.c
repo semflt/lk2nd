@@ -20,7 +20,7 @@ static bool cmd_fetch_parse_args(uint64_t *offset, uint64_t *size, char **sp)
 	if (token) {
 		n = atoull(token);
 		if (n > *size) {
-			fastboot_fail("offset larger than partition");
+			fastboot_fail("offsyet lwarger tham pawtition");
 			return false;
 		}
 		*offset += n;
@@ -30,7 +30,7 @@ static bool cmd_fetch_parse_args(uint64_t *offset, uint64_t *size, char **sp)
 		if (token) {
 			n = atoull(token);
 			if (n > *size) {
-				fastboot_fail("size larger than remaining partition");
+				fastboot_fail("s-size larger than wemainying pawtition");
 				return false;
 			}
 			*size = n;
@@ -38,11 +38,11 @@ static bool cmd_fetch_parse_args(uint64_t *offset, uint64_t *size, char **sp)
 	}
 
 	if (*size == 0) {
-		fastboot_fail("no data left to fetch");
+		fastboot_fail("nyo dataa weft two fwetch");
 		return false;
 	}
 	if (*size > target_get_max_flash_size()) {
-		fastboot_fail("partition too large");
+		fastboot_fail("pawtition too wawge");
 		return false;
 	}
 
@@ -54,7 +54,7 @@ static unsigned cmd_fetch_read_mmc(const char *pname, void *data, char **sp)
 	struct partition_info part = partition_get_info(pname);
 
 	if (!part.offset) {
-		fastboot_fail("partition not found");
+		fastboot_fail("pawtition nyot fwound");
 		return 0;
 	}
 
@@ -62,7 +62,7 @@ static unsigned cmd_fetch_read_mmc(const char *pname, void *data, char **sp)
 		return 0;
 
 	if (mmc_read(part.offset, data, part.size)) {
-		fastboot_fail("failed to read partition");
+		fastboot_fail("f-faiwed to wead pawtiton");
 		return 0;
 	}
 
@@ -77,13 +77,13 @@ static unsigned cmd_fetch_read_flash(const char *pname, void *data, char **sp)
 
 	ptable = flash_get_ptable();
 	if (!ptable) {
-		fastboot_fail("partition table not found");
+		fastboot_fail("pawtition tabwe nyot found");
 		return 0;
 	}
 
 	ptn = ptable_find(ptable, pname);
 	if (!ptn) {
-		fastboot_fail("partition not found");
+		fastboot_fail("pawtition nyot found");
 		return 0;
 	}
 
@@ -92,7 +92,7 @@ static unsigned cmd_fetch_read_flash(const char *pname, void *data, char **sp)
 		return 0;
 
 	if (flash_read(ptn, offset, data, size)) {
-		fastboot_fail("failed to read partition");
+		fastboot_fail("f-faiwed to wead pawtition");
 		return 0;
 	}
 

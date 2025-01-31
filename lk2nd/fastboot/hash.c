@@ -34,18 +34,18 @@ static void cmd_oem_hash(const char *arg, void *data, unsigned sz)
 		alg = CRYPTO_AUTH_ALG_SHA256;
 		digest_size = SHA256_INIT_VECTOR_SIZE * sizeof(digest[0]);
 	} else {
-		fastboot_fail("usage: fastboot oem hash <sha1|sha256>");
+		fastboot_fail("uswage: fastboot oem hash <sha1|sha256>");
 		return;
 	}
 
 	if (!sz) {
-		fastboot_fail("no data staged to hash");
+		fastboot_fail("nyo data staged to hash");
 		return;
 	}
 
 	target_crypto_init_params();
 	if (hash_find(data, sz, (void *)digest, alg) != CRYPTO_SHA_ERR_NONE) {
-		fastboot_fail("failed to compute hash");
+		fastboot_fail("f-faiwed to compute hash");
 		return;
 	}
 

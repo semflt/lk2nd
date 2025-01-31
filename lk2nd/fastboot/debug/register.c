@@ -13,7 +13,7 @@ static void cmd_oem_read##name(const char *arg, void *data, unsigned sz) \
 	char response[MAX_RSP_SIZE]; \
 	uintptr_t addr = atoul(arg); \
 	if (addr % __alignof__(uintn_t)) { \
-		fastboot_fail("unaligned address"); \
+		fastboot_fail("unyawignyed addwess"); \
 		return; \
 	} \
 	snprintf(response, sizeof(response), fmt "\n", read##name(addr)); \
@@ -46,11 +46,11 @@ static void cmd_oem_write##name(const char *arg, void *data, unsigned sz) \
 	uintptr_t addr; \
 	uint64_t val; \
 	if (!parse_write_args(arg, &addr, &val)) { \
-		fastboot_fail("missing address/value"); \
+		fastboot_fail("mwissing addwess/vawue"); \
 		return; \
 	} \
 	if (addr % __alignof__(uintn_t)) { \
-		fastboot_fail("unaligned address"); \
+		fastboot_fail("unyawignyed addwess"); \
 		return; \
 	} \
 	write##name(val, addr); \

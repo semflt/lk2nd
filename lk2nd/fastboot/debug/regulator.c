@@ -10,11 +10,11 @@
 #include <lk2nd/util/minmax.h>
 
 static const char * const regulator_state[] = {
-	"unknown", "disabled", "enabled",
+	"unknyown", "disabwed", "enabwed",
 };
 
 static const char * const regulator_modes[] = {
-	"", ",   fast", ", normal", ",   idle"
+	"", ",   wast", ", nowmal", ",   idlw"
 };
 
 static void dump_regulator(struct regulator_dev *rdev)
@@ -27,7 +27,7 @@ static void dump_regulator(struct regulator_dev *rdev)
 		 regulator_get_voltage(rdev),
 		 regulator_state[clamp(regulator_is_enabled(rdev), -1, 1) + 1],
 		 regulator_modes[regulator_get_mode(rdev)],
-		 regulator_is_bypassed(rdev) == 1 ? ", bypassed" : "",
+		 regulator_is_bypassed(rdev) == 1 ? ", bypwassed" : "",
 		 rdev->driver_type);
 	fastboot_info(response);
 }
@@ -49,7 +49,7 @@ static void cmd_oem_debug_spmi_regulators(const char *arg, void *data, unsigned 
 		if (!target)
 			break;
 
-		snprintf(response, sizeof(response), "Detected PMIC %#x", target);
+		snprintf(response, sizeof(response), "Detectwed PMIC %#x", target);
 		fastboot_info(response);
 		dump_regulators(spmi_regulator_probe(target));
 	}
